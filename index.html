@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Eduardo Duarte | Advogado Trabalhista</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;500;600;700&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --gold: #c9a84c;
+      --gold-light: #d9bc72;
+      --bg: #0d0d0d;
+      --bg-alt: #090909;
+      --bg-card: #141414;
+      --text: #ffffff;
+      --text-muted: #999999;
+      --border: rgba(201, 168, 76, 0.25);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 80px 80px 100px;
+    }
+
+    .hero-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(201, 168, 76, 0.06) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 500px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    .logo-name {
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 0.3px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(24px, 2.6vw, 33px);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 22px;
+      color: #fff;
+    }
+
+    .hero-title .gold {
+      color: var(--gold);
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+      line-height: 1.75;
+    }
+
+    .hero-desc strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 13px 28px;
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.25s, color 0.25s;
+      cursor: pointer;
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: var(--gold);
+      color: #000;
+    }
+
+    .btn-solid {
+      display: inline-block;
+      padding: 13px 28px;
+      background: var(--gold);
+      color: #000;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.25s;
+      cursor: pointer;
+      border: 1.5px solid var(--gold);
+    }
+
+    .btn-solid:hover {
+      background: var(--gold-light);
+    }
+
+    .social-proof {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .avatars {
+      display: flex;
+    }
+
+    .av {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: #000;
+      margin-left: -10px;
+      flex-shrink: 0;
+    }
+
+    .av:first-child {
+      margin-left: 0;
+    }
+
+    .social-proof-text {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .hero-image-wrap {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 54%;
+      z-index: 2;
+    }
+
+    .hero-image-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--bg) 0%, rgba(13, 13, 13, 0.55) 35%, transparent 65%);
+      z-index: 2;
+    }
+
+    .hero-image-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 30%;
+      background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+      z-index: 2;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201, 168, 76, 0.22) 0%, transparent 65%);
+      top: 50%;
+      left: 40%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .hero-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .hero-image-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(201, 168, 76, 0.2);
+      font-size: 14px;
+    }
+
+    .scroll-btn {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      animation: bounceY 2.2s ease-in-out infinite;
+      transition: background 0.2s;
+    }
+
+    .scroll-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    @keyframes bounceY {
+
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(7px);
+      }
+    }
+
+    /* ===== SOBRE ===== */
+    #sobre {
+      padding: 110px 80px;
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      position: relative;
+      border-radius: 3px;
+    }
+
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .about-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.1);
+      font-size: 13px;
+    }
+
+    .about-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3vw, 38px);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 26px;
+    }
+
+    .about-content p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+
+    .about-content p strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* ===== ÁREAS ===== */
+    #areas {
+      padding: 110px 80px;
+      background: var(--bg-alt);
+      text-align: center;
+    }
+
+    .sec-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+
+    .sec-sub {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin: 0 auto 64px;
+      line-height: 1.75;
+    }
+
+    .areas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .area-card {
+      padding: 34px 28px;
+      background: var(--bg-card);
+      transition: border 0.2s;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .area-card:hover {
+      border-color: var(--border);
+    }
+
+    .area-icon {
+      width: 42px;
+      height: 42px;
+      margin-bottom: 20px;
+      color: var(--gold);
+    }
+
+    .area-card h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 12px;
+      line-height: 1.35;
+    }
+
+    .area-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    /* ===== POR QUE ===== */
+    #porque {
+      padding: 130px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .porque-bg-img {
+      position: absolute;
+      inset: 0;
+      background: url('https://picsum.photos/seed/courtroom/1400/800') center/cover no-repeat;
+      opacity: 0.1;
+    }
+
+    .porque-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .porque-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .porque-inner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 3vw, 42px);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .porque-inner p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    /* ===== DIFERENCIAIS ===== */
+    #diferenciais {
+      padding: 110px 80px;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 80px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .dif-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3vw, 38px);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 28px;
+    }
+
+    .dif-list {
+      list-style: none;
+      margin-bottom: 38px;
+    }
+
+    .dif-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 15px;
+      color: var(--text-muted);
+      padding: 7px 0;
+    }
+
+    .dif-list li::before {
+      content: '•';
+      color: var(--gold);
+      font-size: 20px;
+      line-height: 1;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 36px;
+      margin-bottom: 38px;
+    }
+
+    .stat {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .stat-ring {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .dif-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      position: relative;
+      border-radius: 3px;
+    }
+
+    .dif-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .dif-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.1);
+      font-size: 13px;
+    }
+
+    /* ===== DEPOIMENTOS ===== */
+    #depoimentos {
+      padding: 110px 80px;
+      background: var(--bg-alt);
+      text-align: center;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 920px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .test-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 28px 26px;
+      transition: border-color 0.2s;
+    }
+
+    .test-card:hover {
+      border-color: var(--border);
+    }
+
+    .q-icon {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 38px;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .stars {
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: 3px;
+      margin-bottom: 14px;
+    }
+
+    .test-text {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .test-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .author-av {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .author-name {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .author-role {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ===== FAQ ===== */
+    #faq {
+      padding: 100px 80px 120px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .faq-ghost {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(140px, 22vw, 260px);
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.025);
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      letter-spacing: 24px;
+      z-index: 0;
+    }
+
+    .faq-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .faq-arrow-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 44px;
+      cursor: pointer;
+    }
+
+    .faq-inner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 52px;
+    }
+
+    .faq-list {
+      text-align: left;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .faq-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 0;
+      cursor: pointer;
+      font-size: 15.5px;
+      font-weight: 500;
+      color: #fff;
+      user-select: none;
+      transition: color 0.2s;
+    }
+
+    .faq-q:hover {
+      color: var(--gold);
+    }
+
+    .faq-chevron {
+      flex-shrink: 0;
+      color: var(--text-muted);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.open .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    .faq-a {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.38s ease, padding-bottom 0.38s ease;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 240px;
+      padding-bottom: 22px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #080808;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 52px 80px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .footer-name {
+      font-size: 20px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .footer-oab {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.28);
+      margin-bottom: 6px;
+    }
+
+    .footer-dev {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.18);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      #hero {
+        padding: 70px 40px 100px;
+      }
+
+      #sobre {
+        grid-template-columns: 340px 1fr;
+        gap: 50px;
+        padding: 80px 40px;
+      }
+
+      #areas {
+        padding: 80px 40px;
+      }
+
+      .areas-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      #porque {
+        padding: 100px 40px;
+      }
+
+      #diferenciais {
+        grid-template-columns: 1fr 340px;
+        gap: 50px;
+        padding: 80px 40px;
+      }
+
+      #depoimentos {
+        padding: 80px 40px;
+      }
+
+      #faq {
+        padding: 80px 40px 100px;
+      }
+
+      footer {
+        padding: 48px 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #hero {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 60px 24px 80px;
+        min-height: auto;
+      }
+
+      .hero-content {
+        max-width: 100%;
+      }
+
+      .hero-image-wrap {
+        position: relative;
+        width: 100%;
+        height: 400px;
+        margin-top: 48px;
+      }
+
+      .hero-image-wrap::before {
+        background: linear-gradient(to bottom, var(--bg) 0%, transparent 30%, transparent 70%, var(--bg) 100%);
+      }
+
+      #sobre {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding: 70px 24px;
+      }
+
+      .about-photo {
+        aspect-ratio: 4/3;
+      }
+
+      #areas {
+        padding: 70px 24px;
+      }
+
+      .areas-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      #porque {
+        padding: 80px 24px;
+      }
+
+      #diferenciais {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 70px 24px;
+      }
+
+      .dif-photo {
+        aspect-ratio: 4/3;
+        order: -1;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      #depoimentos {
+        padding: 70px 24px;
+      }
+
+      #faq {
+        padding: 70px 24px 90px;
+      }
+
+      footer {
+        padding: 40px 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 32px;
+      }
+
+      .stats-row {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="hero-bg-overlay"></div>
+
+    <div class="hero-content">
+      <div class="logo">
+        <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
+          <line x1="16" y1="3" x2="16" y2="29" stroke="#c9a84c" stroke-width="1.6" stroke-linecap="round" />
+          <line x1="8" y1="5" x2="24" y2="5" stroke="#c9a84c" stroke-width="1.6" stroke-linecap="round" />
+          <path d="M4 14L8 7L12 14" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="8" cy="16" r="4" stroke="#c9a84c" stroke-width="1.4" />
+          <path d="M20 14L24 7L28 14" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="24" cy="16" r="4" stroke="#c9a84c" stroke-width="1.4" />
+          <line x1="6" y1="29" x2="26" y2="29" stroke="#c9a84c" stroke-width="1.6" stroke-linecap="round" />
+        </svg>
+        <span class="logo-name">Dr. Eduardo Duarte</span>
+      </div>
+
+      <h1 class="hero-title">
+        Seus <span class="gold">direitos</span> trabalhistas<br>
+        foram <span class="gold">desrespeitados</span>?
+      </h1>
+
+      <p class="hero-desc">
+        O <strong>Dr. Eduardo Duarte</strong> pode te ajudar a garantir o que é seu por lei.
+        Atendimento rápido, estratégico e focado em resultado.
+      </p>
+
+      <a href="https://wa.me/5585988119795?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20orienta%C3%A7%C3%A3o%20jur%C3%ADdica." target="_blank" rel="noopener" class="btn-outline">Quero orientação jurídica</a>
+
+      <div class="social-proof">
+        <div class="avatars">
+          <div class="av" style="background:linear-gradient(135deg,#a07820,#c9a84c)">M</div>
+          <div class="av" style="background:linear-gradient(135deg,#3a5a7a,#5a8aaa)">J</div>
+          <div class="av" style="background:linear-gradient(135deg,#2a6a3a,#4aaa5a)">A</div>
+          <div class="av" style="background:linear-gradient(135deg,#6a3a3a,#aa5a5a)">R</div>
+          <div class="av" style="background:linear-gradient(135deg,#5a3a7a,#8a5aaa)">L</div>
+        </div>
+        <span class="social-proof-text">+500 clientes atendidos</span>
+      </div>
+    </div>
+
+    <div class="hero-image-wrap">
+      <div class="hero-glow"></div>
+      <img src="img/hero.jpg" alt="Dr. Eduardo Duarte">
+    </div>
+
+    <button class="scroll-btn" onclick="document.getElementById('sobre').scrollIntoView({behavior:'smooth'})" aria-label="Rolar para baixo">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 6L8 11L13 6" stroke="rgba(255,255,255,0.55)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+  </section>
+
+  <!-- ===== SOBRE ===== -->
+  <section id="sobre">
+    <div class="about-photo">
+      <img src="img/sobre.jpg" alt="Dr. Eduardo Duarte">
+    </div>
+
+    <div class="about-content">
+      <h2>Sobre o Dr. Duarte</h2>
+      <p>O <strong>Dr. Eduardo Duarte</strong> atua na área trabalhista com <strong>foco em defender os direitos de trabalhadores</strong> que foram prejudicados por seus empregadores.</p>
+      <p>Com uma <strong>abordagem direta e transparente</strong>, oferece orientação clara em todas as etapas do processo, <strong>garantindo segurança e confiança para seus</strong> clientes.</p>
+      <p>Seu compromisso é buscar a <strong>melhor solução</strong> para cada caso, sempre com ética, responsabilidade e estratégia.</p>
+      <br>
+      <a href="https://wa.me/5585988119795?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20orienta%C3%A7%C3%A3o%20jur%C3%ADdica." target="_blank" rel="noopener" class="btn-outline">Falar com profissional</a>
+    </div>
+  </section>
+
+  <!-- ===== ÁREAS DE ATUAÇÃO ===== -->
+  <section id="areas">
+    <h2 class="sec-title">Áreas de atuação</h2>
+    <p class="sec-sub">Oferecemos soluções completas em Direito Trabalhista, com atendimento personalizado e estratégias eficazes para cada caso.</p>
+
+    <div class="areas-grid">
+
+      <div class="area-card">
+        <svg class="area-icon" viewBox="0 0 42 42" fill="none">
+          <rect x="7" y="3" width="24" height="32" rx="2" stroke="#c9a84c" stroke-width="1.5" />
+          <line x1="13" y1="12" x2="25" y2="12" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
+          <line x1="13" y1="18" x2="25" y2="18" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
+          <line x1="13" y1="24" x2="20" y2="24" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
+        </svg>
+        <h3>Verbas rescisórias<br>não pagas</h3>
+        <p>Para garantir o pagamento integral das verbas rescisórias, como aviso prévio, férias, 13º salário e multa do FGTS.</p>
+      </div>
+
+      <div class="area-card">
+        <svg class="area-icon" viewBox="0 0 42 42" fill="none">
+          <path d="M21 4C21 4 14 9 14 18C14 27 21 32 21 32C21 32 28 27 28 18C28 9 21 4 21 4Z" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="round" />
+          <circle cx="21" cy="18" r="3.5" stroke="#c9a84c" stroke-width="1.4" />
+          <line x1="21" y1="32" x2="21" y2="38" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
+          <line x1="15" y1="38" x2="27" y2="38" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
+        </svg>
+        <h3>Horas Extras e<br>Adicional Noturno</h3>
+        <p>É possível recuperar valores de adicionais e horas extras com o apoio jurídico adequado.</p>
+      </div>
+
+      <div class="area-card">
+        <svg class="area-icon" viewBox="0 0 42 42" fill="none">
+          <rect x="5" y="7" width="28" height="20" rx="2" stroke="#c9a84c" stroke-width="1.5" />
+          <path d="M11 27L11 35L19 31L27 35L27 27" stroke="#c9a84c" stroke-width="1.4" stroke-linejoin="round" />
+          <path d="M13 19L17 23L28 12" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <h3>Rescisão Indireta</h3>
+        <p>Em casos de falta grave do empregador pode solicitar a rescisão indireta saindo da empresa com todos os direitos de uma demissão sem justa causa.</p>
+      </div>
+
+      <div class="area-card">
+        <svg class="area-icon" viewBox="0 0 42 42" fill="none">
+          <path d="M9 7H33V25C33 31 21 37 21 37C21 37 9 31 9 25V7Z" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="round" />
+          <path d="M15 21L19 25L27 17" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <h3>Assédio Moral<br>no Trabalho</h3>
+        <p>Situações de humilhação, pressão excessiva ou constrangimento no ambiente de trabalho não podem ser ignoradas.</p>
+      </div>
+
+      <div class="area-card">
+        <svg class="area-icon" viewBox="0 0 42 42" fill="none">
+          <rect x="7" y="7" width="28" height="28" rx="2" stroke="#c9a84c" stroke-width="1.5" />
+          <path d="M14 21L18 25L28 15" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <h3>Reconhecimento de<br>Vínculo Empregatício</h3>
+        <p>Trabalhou sem registro em carteira? É possível reconhecer o vínculo empregatício e garantir direitos como FGTS, INSS, férias e 13º salário.</p>
+      </div>
+
+      <div class="area-card">
+        <svg class="area-icon" viewBox="0 0 42 42" fill="none">
+          <rect x="7" y="12" width="28" height="22" rx="2" stroke="#c9a84c" stroke-width="1.5" />
+          <path d="M15 12V8H27V12" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
+          <line x1="14" y1="22" x2="28" y2="22" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
+          <line x1="14" y1="27" x2="22" y2="27" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
+        </svg>
+        <h3>Acidente de Trabalho</h3>
+        <p>Você pode ter direito a indenizações e benefícios previdenciários, além de estabilidade no emprego.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== POR QUE ===== -->
+  <section id="porque">
+    <div class="porque-bg-img"></div>
+    <div class="porque-overlay"></div>
+    <div class="porque-inner">
+      <h2>Por que procurar um advogado trabalhista?</h2>
+      <p>Muitas vezes, o trabalhador não recebe corretamente seus direitos e acaba saindo no prejuízo.</p>
+      <p>Com o acompanhamento de um advogado especializado, você aumenta suas chances de receber tudo o que tem direito de forma segura.</p>
+      <br>
+      <a href="https://wa.me/5585988119795?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20orienta%C3%A7%C3%A3o%20jur%C3%ADdica." target="_blank" rel="noopener" class="btn-solid">Garantir meus direitos</a>
+    </div>
+  </section>
+
+  <!-- ===== DIFERENCIAIS ===== -->
+  <section id="diferenciais">
+    <div class="dif-content">
+      <h2>Diferenciais</h2>
+      <ul class="dif-list">
+        <li>Atendimento humanizado e sem burocracia</li>
+        <li>Comunicação simples, sem juridiquês</li>
+        <li>Estratégia personalizada para cada cliente</li>
+        <li>Acompanhamento completo do início ao fim</li>
+      </ul>
+
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-ring">95%</div>
+          <span class="stat-label">de Causas<br>Ganhas</span>
+        </div>
+        <div class="stat">
+          <div class="stat-ring">100%</div>
+          <span class="stat-label">de<br>Dedicação</span>
+        </div>
+      </div>
+
+      <a href="https://wa.me/5585988119795?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20orienta%C3%A7%C3%A3o%20jur%C3%ADdica." target="_blank" rel="noopener" class="btn-outline">Contatar um advogado</a>
+    </div>
+
+    <div class="dif-photo">
+      <img src="img/diferenciais.jpg" alt="Advogado">
+    </div>
+  </section>
+
+  <!-- ===== DEPOIMENTOS ===== -->
+  <section id="depoimentos">
+    <h2 class="sec-title">O Que Nossos Clientes Dizem</h2>
+    <p class="sec-sub">A satisfação dos nossos clientes é nossa maior conquista. Veja alguns depoimentos de pessoas que tiveram seus direitos garantidos.</p>
+
+    <div class="testimonials-grid">
+
+      <div class="test-card">
+        <span class="q-icon">"</span>
+        <div class="stars">★★★★★</div>
+        <p class="test-text">"Excelente profissional! Me ajudou a recuperar todas as minhas verbas rescisórias que a empresa se recusava a pagar. Muito atencioso e competente."</p>
+        <div class="test-author">
+          <div class="author-av" style="background:linear-gradient(135deg,#9a7010,#c9a84c);color:#000">M</div>
+          <div>
+            <div class="author-name">Maria Santos</div>
+            <div class="author-role">Auxiliar Administrativo</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card">
+        <span class="q-icon">"</span>
+        <div class="stars">★★★★★</div>
+        <p class="test-text">"Fui vítima de assédio moral no trabalho e o Dr. Eduardo me deu todo suporte necessário. Ganhamos a causa e recebi uma indenização justa. Recomendo muito!"</p>
+        <div class="test-author">
+          <div class="author-av" style="background:linear-gradient(135deg,#1a4a6a,#2a7aaa);color:#fff">J</div>
+          <div>
+            <div class="author-name">João Oliveira</div>
+            <div class="author-role">Operador de Máquinas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card">
+        <span class="q-icon">"</span>
+        <div class="stars">★★★★★</div>
+        <p class="test-text">"Tinha mais de 5 anos de horas extras não pagas. O Dr. Eduardo conseguiu recuperar tudo com juros e correção. Profissional dedicado e confiável."</p>
+        <div class="test-author">
+          <div class="author-av" style="background:linear-gradient(135deg,#1a5a2a,#2a9a4a);color:#fff">A</div>
+          <div>
+            <div class="author-name">Ana Paula Costa</div>
+            <div class="author-role">Enfermeira</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card">
+        <span class="q-icon">"</span>
+        <div class="stars">★★★★★</div>
+        <p class="test-text">"Processo rápido e eficiente. Desde a primeira consulta me senti seguro e bem orientado. Conseguimos um acordo excelente antes mesmo do julgamento."</p>
+        <div class="test-author">
+          <div class="author-av" style="background:linear-gradient(135deg,#5a1a1a,#aa2a2a);color:#fff">R</div>
+          <div>
+            <div class="author-name">Roberto Lima</div>
+            <div class="author-role">Vendedor</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq">
+    <div class="faq-ghost">FAQ</div>
+
+    <div class="faq-inner">
+      <div class="faq-arrow-btn" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 6L8 11L13 6" stroke="rgba(255,255,255,0.45)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+
+      <h2>Perguntas Frequentes</h2>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>Ainda estou trabalhando. Posso entrar com ação?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 8L10 13L15 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="faq-a">Sim! Você pode entrar com ação mesmo ainda trabalhando na empresa. Existe proteção legal contra demissão por retaliação em muitos casos, e um advogado pode orientar sobre os riscos e as melhores estratégias para a sua situação específica.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>Preciso ter provas para entrar com processo?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 8L10 13L15 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="faq-a">Não necessariamente. A produção de provas ocorre durante o processo. Testemunhos, documentos da empresa, contracheques e outros meios podem ser utilizados. Um advogado pode identificar quais evidências são relevantes para o seu caso.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>Vou precisar ir ao tribunal?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 8L10 13L15 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="faq-a">Na maioria dos casos, buscamos resolver de forma amigável ou em audiência. Muitos processos são concluídos sem que o cliente precise comparecer pessoalmente ao tribunal. Quando necessário, você será preparado para cada etapa.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>Quanto custa contratar um advogado trabalhista?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 8L10 13L15 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="faq-a">Trabalhamos geralmente com honorários de êxito — você só paga se ganhar a causa. Isso significa que não há custo inicial e você pode buscar seus direitos sem preocupação financeira desde o início.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>Quanto tempo demora o processo?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 8L10 13L15 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="faq-a">O tempo varia conforme a complexidade do caso e a Vara Trabalhista. Em média, processos trabalhistas levam de 6 meses a 2 anos. Priorizamos sempre resolver no menor tempo possível, favorecendo acordos quando benéficos ao cliente.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>Tenho medo de processar a empresa. O que fazer?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 8L10 13L15 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="faq-a">É completamente normal ter esse receio. Por isso oferecemos uma consulta inicial para esclarecer todos os seus direitos, riscos e possibilidades. Nossa abordagem é sempre transparente para que você tome a melhor decisão com segurança e tranquilidade.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-logo">
+      <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+        <line x1="16" y1="3" x2="16" y2="29" stroke="#c9a84c" stroke-width="1.6" stroke-linecap="round" />
+        <line x1="8" y1="5" x2="24" y2="5" stroke="#c9a84c" stroke-width="1.6" stroke-linecap="round" />
+        <path d="M4 14L8 7L12 14" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="8" cy="16" r="4" stroke="#c9a84c" stroke-width="1.4" />
+        <path d="M20 14L24 7L28 14" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="24" cy="16" r="4" stroke="#c9a84c" stroke-width="1.4" />
+        <line x1="6" y1="29" x2="26" y2="29" stroke="#c9a84c" stroke-width="1.6" stroke-linecap="round" />
+      </svg>
+      <span class="footer-name">Dr. Eduardo Duarte</span>
+    </div>
+    <p class="footer-oab">OAB/MG 42.000/13</p>
+    <p class="footer-copy">Todos os direitos Reservados © 2026</p>
+    <p class="footer-dev">Desenvolvido por: DAV—REMOTO</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+</body>
+
+</html>
