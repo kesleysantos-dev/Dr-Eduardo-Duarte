@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dr. Eduardo Duarte | Advogado Trabalhista</title>
+  <title>Dr. Paiva Dantas | Advogado Trabalhista</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;500;600;700&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
@@ -115,6 +115,7 @@
       transition: background 0.25s, color 0.25s;
       cursor: pointer;
       background: transparent;
+      margin-top: 10px;
     }
 
     .btn-outline:hover {
@@ -177,10 +178,7 @@
 
     .hero-image-wrap {
       position: absolute;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      width: 54%;
+      inset: 0;
       z-index: 2;
     }
 
@@ -188,7 +186,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to right, var(--bg) 0%, rgba(13, 13, 13, 0.55) 35%, transparent 65%);
+      background: linear-gradient(to right, rgba(13, 13, 13, 0.92) 0%, rgba(13, 13, 13, 0.75) 40%, rgba(13, 13, 13, 0.35) 70%, rgba(13, 13, 13, 0.15) 100%);
       z-index: 2;
     }
 
@@ -198,8 +196,9 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 30%;
+      height: 28%;
       background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+
       z-index: 2;
     }
 
@@ -208,9 +207,9 @@
       width: 480px;
       height: 480px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(201, 168, 76, 0.22) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(201, 168, 76, 0.10) 0%, transparent 45%);
       top: 50%;
-      left: 40%;
+      left: 50%;
       transform: translate(-50%, -50%);
       z-index: 3;
       pointer-events: none;
@@ -220,8 +219,9 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top center;
+      object-position: center top;
       display: block;
+      filter: brightness(1.5);
     }
 
     .hero-image-placeholder {
@@ -357,6 +357,10 @@
       max-width: 1100px;
       margin: 0 auto;
       text-align: left;
+    }
+
+    .swipe-hint {
+      display: none;
     }
 
     .area-card {
@@ -805,8 +809,9 @@
       #hero {
         flex-direction: column;
         align-items: flex-start;
-        padding: 60px 24px 80px;
+        padding: 70px 24px 64px;
         min-height: auto;
+        /* Sem forçar altura total — elimina o gap escuro */
       }
 
       .hero-content {
@@ -814,14 +819,24 @@
       }
 
       .hero-image-wrap {
-        position: relative;
-        width: 100%;
-        height: 400px;
-        margin-top: 48px;
+        position: absolute;
+        inset: 0;
+        width: auto;
+        height: auto;
+        margin-top: 0;
       }
 
       .hero-image-wrap::before {
-        background: linear-gradient(to bottom, var(--bg) 0%, transparent 30%, transparent 70%, var(--bg) 100%);
+        background: linear-gradient(to bottom,
+            rgba(13, 13, 13, 0.94) 0%,
+            rgba(13, 13, 13, 0.82) 45%,
+            rgba(13, 13, 13, 0.55) 75%,
+            rgba(13, 13, 13, 0.30) 100%);
+      }
+
+      /* No mobile o hero usa diferenciais.jpg, que se encaixa melhor centralizada */
+      .hero-image-wrap img {
+        object-position: top center;
       }
 
       #sobre {
@@ -834,13 +849,80 @@
         aspect-ratio: 4/3;
       }
 
+      /* Áreas: seção sem padding horizontal para o carrossel ir de borda a borda */
       #areas {
-        padding: 70px 24px;
+        padding: 60px 0;
       }
 
+      #areas .sec-title,
+      #areas .sec-sub {
+        padding: 0 24px;
+      }
+
+      /* Carrossel horizontal — o usuário desliza para ver todos os 9 cards */
       .areas-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 12px;
+        padding: 4px 24px 20px;
+        scrollbar-width: none;
+        /* Grid deixa de existir no mobile */
+        grid-template-columns: unset;
+      }
+
+      .areas-grid::-webkit-scrollbar {
+        display: none;
+      }
+
+      .area-card {
+        flex: 0 0 200px;
+        scroll-snap-align: start;
+        padding: 24px 18px;
+      }
+
+      .area-icon {
+        width: 34px;
+        height: 34px;
+        margin-bottom: 14px;
+      }
+
+      .area-card h3 {
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+
+      .area-card p {
+        font-size: 12.5px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      /* Indicador de "deslize" visível só no mobile */
+      .swipe-hint {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        font-size: 12.5px;
+        color: var(--text-muted);
+        margin: -36px 0 28px;
+        animation: swipeHintMove 1.8s ease-in-out infinite;
+      }
+
+      @keyframes swipeHintMove {
+
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+
+        50% {
+          transform: translateX(4px);
+        }
       }
 
       #porque {
@@ -858,6 +940,21 @@
         order: -1;
       }
 
+      /* Corrige enquadramento para não cortar a cabeça */
+      .dif-photo img {
+        object-position: top center;
+      }
+
+      /* 95% e 100% lado a lado no mobile */
+      .stats-row {
+        flex-direction: row;
+        gap: 18px;
+      }
+
+      .stat {
+        flex: 1;
+      }
+
       .testimonials-grid {
         grid-template-columns: 1fr;
         gap: 16px;
@@ -871,19 +968,32 @@
         padding: 70px 24px 90px;
       }
 
+      .faq-ghost {
+        font-size: clamp(70px, 28vw, 120px);
+        letter-spacing: 8px;
+      }
+
       footer {
         padding: 40px 24px;
+      }
+
+      .btn-outline,
+      .btn-solid {
+        padding: 15px 28px;
       }
     }
 
     @media (max-width: 480px) {
       .hero-title {
-        font-size: 32px;
+        font-size: 28px;
       }
 
-      .stats-row {
-        flex-direction: column;
-        gap: 20px;
+      .logo-name {
+        font-size: 14px;
+      }
+
+      .hero-desc {
+        font-size: 14px;
       }
     }
   </style>
@@ -906,16 +1016,16 @@
           <circle cx="24" cy="16" r="4" stroke="#c9a84c" stroke-width="1.4" />
           <line x1="6" y1="29" x2="26" y2="29" stroke="#c9a84c" stroke-width="1.6" stroke-linecap="round" />
         </svg>
-        <span class="logo-name">Dr. Eduardo Duarte</span>
+        <span class="logo-name">Dr. Paiva Dantas Advogado</span>
       </div>
 
       <h1 class="hero-title">
-        Seus <span class="gold">direitos</span> trabalhistas<br>
-        foram <span class="gold">desrespeitados</span>?
+        Seu <span class="gold">processo</span> na justiça<br>
+        em até <span class="gold">24h</span>
       </h1>
 
       <p class="hero-desc">
-        O <strong>Dr. Eduardo Duarte</strong> pode te ajudar a garantir o que é seu por lei.
+        O <strong>Dr. Paiva Dantas</strong> pode te ajudar a garantir o que é seu por lei.
         Atendimento rápido, estratégico e focado em resultado.
       </p>
 
@@ -935,7 +1045,10 @@
 
     <div class="hero-image-wrap">
       <div class="hero-glow"></div>
-      <img src="img/hero.jpg" alt="Dr. Eduardo Duarte">
+      <picture>
+        <source media="(max-width: 768px)" srcset="img/diferenciais.jpg">
+        <img src="img/hero.jpg" alt="Dr. Paiva Dantas">
+      </picture>
     </div>
 
     <button class="scroll-btn" onclick="document.getElementById('sobre').scrollIntoView({behavior:'smooth'})" aria-label="Rolar para baixo">
@@ -948,16 +1061,18 @@
   <!-- ===== SOBRE ===== -->
   <section id="sobre">
     <div class="about-photo">
-      <img src="img/sobre.jpg" alt="Dr. Eduardo Duarte">
+      <img src="img/sobre.jpg" alt="Dr. Paiva Dantas">
     </div>
 
     <div class="about-content">
-      <h2>Sobre o Dr. Duarte</h2>
-      <p>O <strong>Dr. Eduardo Duarte</strong> atua na área trabalhista com <strong>foco em defender os direitos de trabalhadores</strong> que foram prejudicados por seus empregadores.</p>
-      <p>Com uma <strong>abordagem direta e transparente</strong>, oferece orientação clara em todas as etapas do processo, <strong>garantindo segurança e confiança para seus</strong> clientes.</p>
-      <p>Seu compromisso é buscar a <strong>melhor solução</strong> para cada caso, sempre com ética, responsabilidade e estratégia.</p>
-      <br>
-      <a href="https://wa.me/5585988119795?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20orienta%C3%A7%C3%A3o%20jur%C3%ADdica." target="_blank" rel="noopener" class="btn-outline">Falar com profissional</a>
+      <h2>Sobre o Dr. Paiva Dantas</h2>
+      <p>O <strong>Dr. Paiva Dantas</strong> dedica sua trajetória profissional à advocacia trabalhista e à defesa dos direitos da classe trabalhadora.
+        Com sólida experiência prática e atuação especializada em Direito e Processo do Trabalho, o escritório desenvolve trabalho pautado na responsabilidade, no acompanhamento próximo do cliente e na atuação técnica qualificada.
+        A experiência profissional foi construída ao longo de anos de atuação em demandas trabalhistas relevantes, envolvendo verbas rescisórias, justa causa, horas extras, FGTS, insalubridade, periculosidade, acidente de trabalho, reconhecimento de vínculo empregatício e execução trabalhista.
+
+
+        <br>
+        <a href="https://wa.me/5585988119795?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20orienta%C3%A7%C3%A3o%20jur%C3%ADdica." target="_blank" rel="noopener" class="btn-outline">Falar com profissional</a>
     </div>
   </section>
 
@@ -966,7 +1081,36 @@
     <h2 class="sec-title">Áreas de atuação</h2>
     <p class="sec-sub">Oferecemos soluções completas em Direito Trabalhista, com atendimento personalizado e estratégias eficazes para cada caso.</p>
 
+    <div class="swipe-hint">
+      Deslize para o lado
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </div>
+
     <div class="areas-grid">
+
+      <div class="area-card">
+        <svg class="area-icon" viewBox="0 0 42 42" fill="none">
+          <path d="M9 7H33V25C33 31 21 37 21 37C21 37 9 31 9 25V7Z" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="round" />
+          <line x1="16" y1="3" x2="16" y2="7" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
+          <line x1="26" y1="3" x2="26" y2="7" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
+          <path d="M15 22L19 26L27 18" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <h3>Defesa Trabalhista<br>Especializada</h3>
+        <p>Representação jurídica completa em todas as fases do processo trabalhista, do acordo extrajudicial à execução da sentença.</p>
+      </div>
+
+      <div class="area-card">
+        <svg class="area-icon" viewBox="0 0 42 42" fill="none">
+          <circle cx="21" cy="18" r="11" stroke="#c9a84c" stroke-width="1.5" />
+          <line x1="21" y1="12" x2="21" y2="19" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" />
+          <circle cx="21" cy="23" r="1.2" fill="#c9a84c" />
+          <line x1="14" y1="33" x2="28" y2="33" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
+        </svg>
+        <h3>Justa Causa<br>Indevida</h3>
+        <p>Demitido por justa causa sem motivo legítimo? É possível reverter a dispensa e receber todas as verbas rescisórias devidas.</p>
+      </div>
 
       <div class="area-card">
         <svg class="area-icon" viewBox="0 0 42 42" fill="none">
@@ -975,19 +1119,8 @@
           <line x1="13" y1="18" x2="25" y2="18" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
           <line x1="13" y1="24" x2="20" y2="24" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
         </svg>
-        <h3>Verbas rescisórias<br>não pagas</h3>
-        <p>Para garantir o pagamento integral das verbas rescisórias, como aviso prévio, férias, 13º salário e multa do FGTS.</p>
-      </div>
-
-      <div class="area-card">
-        <svg class="area-icon" viewBox="0 0 42 42" fill="none">
-          <path d="M21 4C21 4 14 9 14 18C14 27 21 32 21 32C21 32 28 27 28 18C28 9 21 4 21 4Z" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="round" />
-          <circle cx="21" cy="18" r="3.5" stroke="#c9a84c" stroke-width="1.4" />
-          <line x1="21" y1="32" x2="21" y2="38" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
-          <line x1="15" y1="38" x2="27" y2="38" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
-        </svg>
-        <h3>Horas Extras e<br>Adicional Noturno</h3>
-        <p>É possível recuperar valores de adicionais e horas extras com o apoio jurídico adequado.</p>
+        <h3>Verbas<br>Rescisórias</h3>
+        <p>Garantia do pagamento integral das verbas rescisórias: aviso prévio, férias proporcionais, 13º salário e multa do FGTS.</p>
       </div>
 
       <div class="area-card">
@@ -996,26 +1129,41 @@
           <path d="M11 27L11 35L19 31L27 35L27 27" stroke="#c9a84c" stroke-width="1.4" stroke-linejoin="round" />
           <path d="M13 19L17 23L28 12" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
-        <h3>Rescisão Indireta</h3>
-        <p>Em casos de falta grave do empregador pode solicitar a rescisão indireta saindo da empresa com todos os direitos de uma demissão sem justa causa.</p>
+        <h3>Rescisão<br>Indireta</h3>
+        <p>Quando o empregador comete falta grave, você pode sair da empresa com todos os direitos de uma demissão sem justa causa.</p>
       </div>
 
       <div class="area-card">
         <svg class="area-icon" viewBox="0 0 42 42" fill="none">
-          <path d="M9 7H33V25C33 31 21 37 21 37C21 37 9 31 9 25V7Z" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="round" />
-          <path d="M15 21L19 25L27 17" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="21" cy="12" r="6" stroke="#c9a84c" stroke-width="1.5" />
+          <line x1="21" y1="18" x2="21" y2="30" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" />
+          <line x1="14" y1="24" x2="28" y2="24" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
+          <line x1="14" y1="36" x2="28" y2="36" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
+          <line x1="21" y1="30" x2="14" y2="36" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
+          <line x1="21" y1="30" x2="28" y2="36" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
         </svg>
-        <h3>Assédio Moral<br>no Trabalho</h3>
-        <p>Situações de humilhação, pressão excessiva ou constrangimento no ambiente de trabalho não podem ser ignoradas.</p>
+        <h3>Horas<br>Extras</h3>
+        <p>Recupere os valores de horas extras não pagas, adicional noturno e banco de horas irregular dos últimos 5 anos.</p>
       </div>
 
       <div class="area-card">
         <svg class="area-icon" viewBox="0 0 42 42" fill="none">
-          <rect x="7" y="7" width="28" height="28" rx="2" stroke="#c9a84c" stroke-width="1.5" />
-          <path d="M14 21L18 25L28 15" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M21 6L26 16H36L28 23L31 33L21 27L11 33L14 23L6 16H16Z" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="round" />
         </svg>
-        <h3>Reconhecimento de<br>Vínculo Empregatício</h3>
-        <p>Trabalhou sem registro em carteira? É possível reconhecer o vínculo empregatício e garantir direitos como FGTS, INSS, férias e 13º salário.</p>
+        <h3>Insalubridade</h3>
+        <p>Trabalha exposto a agentes nocivos à saúde? Você tem direito ao adicional de insalubridade sobre o salário mínimo ou contratual.</p>
+      </div>
+
+      <div class="area-card">
+        <svg class="area-icon" viewBox="0 0 42 42" fill="none">
+          <path d="M21 5L23 11H29L24 15L26 21L21 17L16 21L18 15L13 11H19Z" stroke="#c9a84c" stroke-width="1.4" stroke-linejoin="round" />
+          <path d="M10 28C10 22 15 18 21 18C27 18 32 22 32 28" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" />
+          <line x1="10" y1="28" x2="10" y2="35" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
+          <line x1="32" y1="28" x2="32" y2="35" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
+          <line x1="8" y1="35" x2="34" y2="35" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
+        </svg>
+        <h3>Periculosidade</h3>
+        <p>Atividades com risco elevado garantem adicional de periculosidade de 30% sobre o salário. Saiba se você tem direito.</p>
       </div>
 
       <div class="area-card">
@@ -1025,8 +1173,19 @@
           <line x1="14" y1="22" x2="28" y2="22" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
           <line x1="14" y1="27" x2="22" y2="27" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
         </svg>
-        <h3>Acidente de Trabalho</h3>
-        <p>Você pode ter direito a indenizações e benefícios previdenciários, além de estabilidade no emprego.</p>
+        <h3>Acidente<br>de Trabalho</h3>
+        <p>Indenizações, estabilidade no emprego e benefícios previdenciários para quem sofreu acidente ou doença ocupacional.</p>
+      </div>
+
+      <div class="area-card">
+        <svg class="area-icon" viewBox="0 0 42 42" fill="none">
+          <path d="M9 7H33V25C33 31 21 37 21 37C21 37 9 31 9 25V7Z" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="round" />
+          <line x1="17" y1="16" x2="25" y2="16" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" />
+          <line x1="21" y1="12" x2="21" y2="20" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" />
+          <line x1="16" y1="25" x2="26" y2="25" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" />
+        </svg>
+        <h3>Assédio<br>Moral</h3>
+        <p>Humilhações, pressão abusiva e constrangimentos no trabalho geram direito a indenização por danos morais.</p>
       </div>
 
     </div>
@@ -1038,8 +1197,8 @@
     <div class="porque-overlay"></div>
     <div class="porque-inner">
       <h2>Por que procurar um advogado trabalhista?</h2>
-      <p>Muitas vezes, o trabalhador não recebe corretamente seus direitos e acaba saindo no prejuízo.</p>
-      <p>Com o acompanhamento de um advogado especializado, você aumenta suas chances de receber tudo o que tem direito de forma segura.</p>
+      <p>É muito comum que o profissional seja prejudicado ao não ter seus direitos pagos de maneira correta.</p>
+      <p>Contar com o suporte de um advogado especialista é o caminho mais seguro para garantir que você receba cada centavo que é seu por direito.</p>
       <br>
       <a href="https://wa.me/5585988119795?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20orienta%C3%A7%C3%A3o%20jur%C3%ADdica." target="_blank" rel="noopener" class="btn-solid">Garantir meus direitos</a>
     </div>
@@ -1228,11 +1387,11 @@
         <circle cx="24" cy="16" r="4" stroke="#c9a84c" stroke-width="1.4" />
         <line x1="6" y1="29" x2="26" y2="29" stroke="#c9a84c" stroke-width="1.6" stroke-linecap="round" />
       </svg>
-      <span class="footer-name">Dr. Eduardo Duarte</span>
+      <span class="footer-name">Dr. Paiva Dantas</span>
     </div>
     <p class="footer-oab">OAB/MG 42.000/13</p>
     <p class="footer-copy">Todos os direitos Reservados © 2026</p>
-    <p class="footer-dev">Desenvolvido por: DAV—REMOTO</p>
+    <p class="footer-dev">Desenvolvido por: YELSEK.CREATIVE</p>
   </footer>
 
   <script>
