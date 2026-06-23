@@ -101,6 +101,8 @@
       color: var(--gold);
     }
 
+    .br-mobile { display: none; }
+
     .hero-desc {
       font-size: 15px;
       color: var(--text-muted);
@@ -878,12 +880,15 @@
       }
 
       .hero-inner {
-        padding: 70px 24px 64px;
+        padding: 110px 24px 64px;
       }
 
       .hero-content {
         max-width: 100%;
       }
+
+      .br-desktop { display: none; }
+      .br-mobile { display: inline; }
 
       .hero-image-wrap {
         position: absolute;
@@ -1093,8 +1098,8 @@
 
         </div>
 
-        <h1 class=" hero-title">
-          Sua <span class="gold">audiência</span> na justiça<br>
+        <h1 class="hero-title">
+          Sua <span class="gold">audiência</span><br class="br-mobile"> na justiça<br class="br-desktop">
           em <span class="gold">24h</span>
         </h1>
 
@@ -1107,11 +1112,11 @@
 
         <div class="social-proof">
           <div class="avatars">
-            <div class="av" style="background:linear-gradient(135deg,#a07820,#c9a84c)">M</div>
-            <div class="av" style="background:linear-gradient(135deg,#3a5a7a,#5a8aaa)">J</div>
-            <div class="av" style="background:linear-gradient(135deg,#2a6a3a,#4aaa5a)">A</div>
-            <div class="av" style="background:linear-gradient(135deg,#6a3a3a,#aa5a5a)">R</div>
-            <div class="av" style="background:linear-gradient(135deg,#5a3a7a,#8a5aaa)">L</div>
+            <div class="av" style="background-image:url('https://i.pravatar.cc/72?img=5');background-size:cover;background-position:center;"></div>
+            <div class="av" style="background-image:url('https://i.pravatar.cc/72?img=11');background-size:cover;background-position:center;"></div>
+            <div class="av" style="background-image:url('https://i.pravatar.cc/72?img=23');background-size:cover;background-position:center;"></div>
+            <div class="av" style="background-image:url('https://i.pravatar.cc/72?img=47');background-size:cover;background-position:center;"></div>
+            <div class="av" style="background-image:url('https://i.pravatar.cc/72?img=33');background-size:cover;background-position:center;"></div>
           </div>
           <span class="social-proof-text">Milhares de causas já resolvidas</span>
         </div>
