@@ -302,6 +302,8 @@
       overflow: hidden;
       position: relative;
       border-radius: 3px;
+      border: 1px solid var(--border);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
     }
 
     .about-photo img {
@@ -927,6 +929,10 @@
 
       .about-photo {
         aspect-ratio: 4/3;
+      }
+
+      .about-photo img {
+        object-position: top center;
       }
 
       /* Áreas: seção sem padding horizontal para o carrossel ir de borda a borda */
