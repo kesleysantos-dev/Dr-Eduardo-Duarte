@@ -200,7 +200,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to right, rgba(13, 13, 13, 0.92) 0%, rgba(13, 13, 13, 0.75) 40%, rgba(13, 13, 13, 0.35) 70%, rgba(13, 13, 13, 0.15) 100%);
+      background: linear-gradient(to right, rgba(13, 13, 13, 0.94) 0%, rgba(13, 13, 13, 0.82) 35%, rgba(13, 13, 13, 0.4) 50%, rgba(13, 13, 13, 0) 68%);
       z-index: 2;
     }
 
@@ -235,7 +235,6 @@
       object-fit: cover;
       object-position: center top;
       display: block;
-      filter: brightness(1.5);
     }
 
     .hero-image-placeholder {
@@ -311,6 +310,10 @@
       height: 100%;
       object-fit: cover;
       display: block;
+    }
+
+    #sobre .about-photo img {
+      object-position: 60% center;
     }
 
     .about-photo-placeholder {
@@ -915,7 +918,7 @@
             rgba(13, 13, 13, 0.30) 100%);
       }
 
-      /* No mobile o hero usa diferenciais.jpg, que se encaixa melhor centralizada */
+      /* No mobile o hero usa tese.jpg, que se encaixa melhor centralizada */
       .hero-image-wrap img {
         object-position: top center;
       }
@@ -928,7 +931,7 @@
       }
 
       .about-photo {
-        aspect-ratio: 4/3;
+        aspect-ratio: 4/4;
       }
 
       .about-photo img {
@@ -1022,7 +1025,7 @@
       }
 
       .dif-photo {
-        aspect-ratio: 4/3;
+        aspect-ratio: 4/4;
         order: -1;
       }
 
@@ -1138,7 +1141,7 @@
     <div class="hero-image-wrap">
       <div class="hero-glow"></div>
       <picture>
-        <source media="(max-width: 768px)" srcset="img/diferenciais.jpg">
+        <source media="(max-width: 768px)" srcset="img/tese.jpg">
         <img src="img/hero.jpg" alt="Advogado Paiva Dantas">
       </picture>
     </div>
