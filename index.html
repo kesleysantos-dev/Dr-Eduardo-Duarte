@@ -155,39 +155,22 @@
       background: var(--gold-light);
     }
 
-    .social-proof {
+    .social-proof-solo {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 10px;
       margin-top: 28px;
-    }
-
-    .avatars {
-      display: flex;
-    }
-
-    .av {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 2px solid var(--bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 700;
-      color: #000;
-      margin-left: -10px;
-      flex-shrink: 0;
-    }
-
-    .av:first-child {
-      margin-left: 0;
-    }
-
-    .social-proof-text {
       font-size: 13px;
       color: var(--text-muted);
+      letter-spacing: 0.2px;
+    }
+
+    .social-proof-solo::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
     }
 
     .hero-image-wrap {
@@ -1112,17 +1095,8 @@
         padding: 17px 36px;
       }
 
-      .social-proof {
+      .social-proof-solo {
         margin-top: 36px;
-      }
-
-      .av {
-        width: 42px;
-        height: 42px;
-        font-size: 13px;
-      }
-
-      .social-proof-text {
         font-size: 14.5px;
       }
     }
@@ -1181,7 +1155,7 @@
       }
 
       .hero-inner {
-        padding: 110px 24px 64px;
+        padding: 90px 24px 64px;
       }
 
       .hero-content {
@@ -1217,7 +1191,7 @@
         height: 14%;
       }
 
-      /* No mobile o hero usa tese.jpg, que se encaixa melhor centralizada */
+      /* No mobile o hero usa hero-mobile.jpg, que se encaixa melhor centralizada */
       .hero-image-wrap img {
         object-position: top center;
       }
@@ -1230,11 +1204,17 @@
       }
 
       .about-photo {
-        aspect-ratio: 4/4;
+        aspect-ratio: 4/5;
       }
 
-      .about-photo img {
+      .about-photo img,
+      #sobre .about-photo img {
         object-position: top center;
+      }
+
+      /* Corta o necessário da parede no topo pra mostrar as pernas e os pés dele sentado */
+      #tese .about-photo img {
+        object-position: center bottom;
       }
 
       /* Áreas: seção sem padding horizontal para o carrossel ir de borda a borda */
@@ -1324,13 +1304,13 @@
       }
 
       .dif-photo {
-        aspect-ratio: 4/4;
+        aspect-ratio: 4/5;
         order: -1;
       }
 
-      /* Corrige enquadramento para não cortar a cabeça */
+      /* Corrige enquadramento para mostrar cabeça e braços sem cortar */
       .dif-photo img {
-        object-position: top center;
+        object-position: center 15%;
       }
 
       /* 95% e 100% lado a lado no mobile */
@@ -1424,23 +1404,14 @@
 
         <a href="https://wa.me/5585988119795?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20orienta%C3%A7%C3%A3o%20jur%C3%ADdica." target="_blank" rel="noopener" class="btn-outline">Quero falar com o advogado</a>
 
-        <div class="social-proof">
-          <div class="avatars">
-            <div class="av" style="background-image:url('https://i.pravatar.cc/72?img=5');background-size:cover;background-position:center;"></div>
-            <div class="av" style="background-image:url('https://i.pravatar.cc/72?img=11');background-size:cover;background-position:center;"></div>
-            <div class="av" style="background-image:url('https://i.pravatar.cc/72?img=23');background-size:cover;background-position:center;"></div>
-            <div class="av" style="background-image:url('https://i.pravatar.cc/72?img=47');background-size:cover;background-position:center;"></div>
-            <div class="av" style="background-image:url('https://i.pravatar.cc/72?img=33');background-size:cover;background-position:center;"></div>
-          </div>
-          <span class="social-proof-text">Milhares de causas já resolvidas</span>
-        </div>
+        <p class="social-proof-solo">Milhares de causas já resolvidas</p>
       </div>
     </div>
 
     <div class="hero-image-wrap">
       <div class="hero-glow"></div>
       <picture>
-        <source media="(max-width: 768px)" srcset="img/tese.jpg">
+        <source media="(max-width: 768px)" srcset="img/hero-mobile.jpg">
         <img src="img/hero.jpg" alt="Advogado Paiva Dantas">
       </picture>
     </div>
