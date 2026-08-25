@@ -2,7 +2,9 @@
   "name": "dr-eduardo-duarte",
   "version": "1.0.0",
   "scripts": {
-    "dev": "vite --port 3000"
+    "dev": "vite --port 3000",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
     "vite": "^8.0.16"
